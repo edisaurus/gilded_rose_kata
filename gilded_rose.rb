@@ -6,8 +6,12 @@ def update_quality(items)
           'Sulfuras, Hand of Ragnaros',
          ]
   items.each do |item|
-      # item is Aged Brie
+      # item is Aged Brie or Backstage passes
       if item.name == name[0]
+        item.sell_in -= 1
+        item.quality += 1
+      
+      elsif item.name == name[1] && item.sell_in > 10
         item.sell_in -= 1
         item.quality += 1
       

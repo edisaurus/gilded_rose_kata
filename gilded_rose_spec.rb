@@ -12,6 +12,7 @@ RSpec.describe "GildedRose" do
       Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 20),
       Item.new("Backstage passes", 7, 12),
       Item.new("Backstage passes", 3, 8),
+      Item.new("Backstage passes", 11, 14),
       Item.new("Conjured Mana Cake", 3, 6)
       ]
     end
@@ -39,19 +40,24 @@ RSpec.describe "GildedRose" do
       expect(updated[4].quality).to eq 0
     end
 
-    it "item is Backstage passes with sell in less than 10" do
+    it "Backstage passes with sell in less than 10" do
       expect(updated[5].sell_in).to eq 6
       expect(updated[5].quality).to eq 14
     end
 
-    it "item is Backstage passes with sell in less than 5" do
+    it "Backstage passes with sell in less than 5" do
       expect(updated[6].sell_in).to eq 2
       expect(updated[6].quality).to eq 11
     end
 
+    it "Backstage passes with sell in more than 10" do
+      expect(updated[7].sell_in).to eq 10
+      expect(updated[7].quality).to eq 15
+    end
+
     it "Conjured Items" do
-      expect(updated[7].sell_in).to eq 2
-      expect(updated[7].quality).to eq 4
+      expect(updated[8].sell_in).to eq 2
+      expect(updated[8].quality).to eq 4
     end
 
     it "Quality of item is never negative" do
