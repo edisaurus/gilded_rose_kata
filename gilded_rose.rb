@@ -1,18 +1,33 @@
 def update_quality(items)
-  name = ['Aged Brie', 
+  name = [
+          'Aged Brie', 
           'Backstage passes to a TAFKAL80ETC concert', 
           'Sulfuras, Hand of Ragnaros',
-          ]
+         ]
   items.each do |item|
+      # item is Aged Brie or Backstage passes
       if item.name == name[0] || item.name == name[1]
         item.sell_in -= 1
         item.quality += 1
+
+      elsif item.name == name[1]
+        if item.sell_in < 10 || item.sell_in == 0
+          item.quality += 2
+        elsif item.sell_in < 5
+          item.quality += 3
+        end
+      
+      # item is Sulfuras
       elsif item.name == name[2]
         item.sell_in = item.sell_in
         item.quality = item.quality
+      
+      # item is Conjured
       elsif item.name.start_with? "Conjured"
         item.sell_in -= 1
-        item.quality -= 1
+        item.quality -= 2
+      
+      # item is Normal
       else
         item.sell_in -= 1
         item.quality -= 1

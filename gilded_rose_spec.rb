@@ -40,19 +40,14 @@ RSpec.describe "GildedRose" do
 
     it "Conjured Items" do
       expect(updated[5].sell_in).to eq 2
-      expect(updated[5].quality).to eq 5
+      expect(updated[5].quality).to eq 4
+    end
+
+    it "Quality of item is never negative" do
+      updated.each do |item|
+        expect(item.quality).to be > 0
+      end
     end
   end
     
 end
-
- # let!(:result) do
-    #   [
-    #   Item.new("+5 Dexterity Vest", 9, 19),
-    #   Item.new("Aged Brie", 1, 1),
-    #   Item.new("Elixir of the Mongoose", 4, 6),
-    #   Item.new("Sulfuras, Hand of Ragnaros", 0, 80),
-    #   Item.new("Backstage passes to a TAFKAL80ETC concert", 14, 21),
-    #   Item.new("Conjured Mana Cake", 2, 5)
-    #   ]
-    # end
