@@ -1,48 +1,22 @@
 def update_quality(items)
+  name = ['Aged Brie', 
+          'Backstage passes to a TAFKAL80ETC concert', 
+          'Sulfuras, Hand of Ragnaros',
+          ]
   items.each do |item|
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
-        end
-      end
-    else
-      if item.quality < 50
+      if item.name == name[0] || item.name == name[1]
+        item.sell_in -= 1
         item.quality += 1
-        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-          if item.sell_in < 11
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-          if item.sell_in < 6
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-        end
-      end
-    end
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      item.sell_in -= 1
-    end
-    if item.sell_in < 0
-      if item.name != "Aged Brie"
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.quality > 0
-            if item.name != 'Sulfuras, Hand of Ragnaros'
-              item.quality -= 1
-            end
-          end
-        else
-          item.quality = item.quality - item.quality
-        end
+      elsif item.name == name[2]
+        item.sell_in = item.sell_in
+        item.quality = item.quality
+      elsif item.name.start_with? "Conjured"
+        item.sell_in -= 1
+        item.quality -= 1
       else
-        if item.quality < 50
-          item.quality += 1
-        end
+        item.sell_in -= 1
+        item.quality -= 1
       end
-    end
   end
 end
 
@@ -61,3 +35,10 @@ Item = Struct.new(:name, :sell_in, :quality)
 #   Item.new("Conjured Mana Cake", 3, 6),
 # ]
 
+# puts update_quality(Items)
+#<struct Item name="+5 Dexterity Vest", sell_in=9, quality=19>
+#<struct Item name="Aged Brie", sell_in=1, quality=1>
+#<struct Item name="Elixir of the Mongoose", sell_in=4, quality=6>
+#<struct Item name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80>
+#<struct Item name="Backstage passes to a TAFKAL80ETC concert", sell_in=14, quality=21>
+#<struct Item name="Conjured Mana Cake", sell_in=2, quality=5>
