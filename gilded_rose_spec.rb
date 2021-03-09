@@ -45,7 +45,7 @@ RSpec.describe "GildedRose" do
 
     it "Quality of item is never negative" do
       updated.each do |item|
-        expect(item.quality).to be > 0
+        expect(item.quality).to be > -1
       end
     end
   end
